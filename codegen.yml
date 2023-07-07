@@ -4,11 +4,14 @@ schema: "./src/graphql/schema.graphql"
 documents: "./src/graphql/*.graphql"
 # Where the generated output will be saved
 generates:
-  src/graphql/generated.ts:
+  ./generated.ts:
     plugins:
       - typescript
       - typescript-operations
       - typescript-react-query
       - fragment-matcher
     config:
-      - dedupeFragments: true
+      dedupeFragments: true
+      fetcher:
+        func: "./authFetcher#fetcher"
+        isReactHook: false
